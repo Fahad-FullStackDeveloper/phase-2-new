@@ -1,5 +1,12 @@
 # Versions
 
+## v0.3.0 - February 9, 2026
+- Added integration-tester agent for verifying frontend and backend components
+- Added project-coordinator agent for managing monorepo structure and infrastructure files
+- Added spec-writer-documentation-agent-phase-2 for creating and maintaining specification documents
+- Enhanced agent capabilities with additional specialized tools
+- Created comprehensive README.md file outlining project scope and structure
+
 ## v0.2.0 - February 9, 2026
 - Initial updates to project structure
 - Setup specialized agents for development tasks
