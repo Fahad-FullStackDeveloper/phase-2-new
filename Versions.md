@@ -1,5 +1,12 @@
 # Versions
 
+## v0.6.0 - February 10, 2026
+- Completed comprehensive feature specification for multi-user Todo application
+- Generated detailed technical implementation plan with security focus
+- Created complete task breakdown with 81 individual tasks across 10 phases
+- Added security requirements checklist with 34 validation items
+- Enhanced project documentation and status tracking
+
 ## v0.5.0 - February 10, 2026
 - Updated project constitution with specific details for Todo Full-Stack Web Application
 - Aligned template files (plan, spec, tasks) with new constitution requirements

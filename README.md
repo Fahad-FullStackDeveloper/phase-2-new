@@ -68,6 +68,16 @@ This project uses a unique agent-based development methodology. Contributions sh
 
 All development must follow the project constitution located at `.specify/memory/constitution.md`. This document defines the unbreakable rules, principles, architecture, success criteria, and workflow for the entire project. All agents, skills, and implementations must strictly follow this constitution. No deviation is allowed without explicit update to this file.
 
+## Project Status
+
+Current Phase: II - Full-Stack Web Application with persistent storage
+- Multi-user Todo application with secure authentication
+- Complete CRUD operations for user tasks
+- Strict user isolation ensuring data privacy
+- Responsive UI with clean, modern design
+- JWT-based authentication with Better Auth integration
+- Server-first architecture with Next.js App Router
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
