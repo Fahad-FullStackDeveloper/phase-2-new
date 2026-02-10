@@ -1,5 +1,11 @@
 # Versions
 
+## v0.5.0 - February 10, 2026
+- Updated project constitution with specific details for Todo Full-Stack Web Application
+- Aligned template files (plan, spec, tasks) with new constitution requirements
+- Added constitution compliance checks to development workflow
+- Enhanced README with constitution reference
+
 ## v0.4.0 - February 10, 2026
 - Added specialized development skills for consistent code quality:
   - Next.js Core Conventions skill for App Router best practices

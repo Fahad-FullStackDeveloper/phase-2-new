@@ -66,6 +66,8 @@ Detailed setup instructions will be added as the project develops. Each speciali
 
 This project uses a unique agent-based development methodology. Contributions should align with the specialized roles of each agent to maintain consistency and efficiency.
 
+All development must follow the project constitution located at `.specify/memory/constitution.md`. This document defines the unbreakable rules, principles, architecture, success criteria, and workflow for the entire project. All agents, skills, and implementations must strictly follow this constitution. No deviation is allowed without explicit update to this file.
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.

@@ -17,21 +17,28 @@
   the iteration process.
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**Language/Version**: TypeScript (frontend), Python 3.11+ (backend)
+**Primary Dependencies**: Next.js 16+ (App Router), FastAPI, SQLModel, Better Auth, Neon PostgreSQL
+**Storage**: Neon PostgreSQL via SQLModel ORM
+**Testing**: pytest (backend), Jest/React Testing Library (frontend)
+**Target Platform**: Web application (multi-user Todo application)
+**Project Type**: Full-stack web application with monorepo structure
+**Performance Goals**: Responsive UI with <200ms p95 response times for API calls
+**Constraints**: User isolation (each user sees only their own tasks), JWT stateless auth
+**Scale/Scope**: Multi-user application with secure authentication and task management
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] Spec-Driven Development: All changes originate from spec files
+- [ ] Monorepo Structure: Adheres to exact folder layout (frontend/, backend/, specs/, etc.)
+- [ ] User Isolation: Backend enforces user_id filtering on all queries
+- [ ] Stateless JWT Auth: Proper JWT verification using shared secret
+- [ ] Server-First: Prefer Server Components over Client Components where possible
+- [ ] Clean Code: Production-ready quality maintained even in hackathon speed
+- [ ] Type Safety: TypeScript (frontend), Pydantic/SQLModel (backend) with strict typing
+- [ ] Error Handling: User-friendly messages and proper HTTP status codes
 
 ## Project Structure
 
@@ -56,43 +63,48 @@ specs/[###-feature]/
 -->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+# Web application (monorepo structure)
+hackathon-todo/
+├── .specify/                  # Spec-Kit Plus config
+│   └── config.yaml
+├── specs/                     # All specifications here
+│   ├── overview.md
+│   ├── architecture.md
+│   ├── features/
+│   │   ├── task-crud.md
+│   │   ├── authentication.md
+│   ├── api/
+│   │   ├── rest-endpoints.md
+│   ├── database/
+│   │   └── schema.md
+│   └── ui/
+│       ├── components.md
+│       └── pages.md
+├── frontend/
+│   ├── CLAUDE.md              # Frontend-specific rules (even if Qwen, keep naming)
+│   ├── app/                   # Next.js App Router
+│   │   ├── (auth)/            # Authentication routes
+│   │   ├── (app)/             # Main application routes
+│   │   ├── api/               # API routes
+│   │   ├── globals.css        # Global styles
+│   │   └── layout.tsx         # Root layout
+│   ├── components/            # Reusable components
+│   ├── lib/                   # Utility functions
+│   ├── types/                 # TypeScript type definitions
+│   └── package.json
+├── backend/
+│   ├── CLAUDE.md              # Backend-specific rules
+│   ├── main.py                # FastAPI app entry point
+│   ├── models/                # SQLModel definitions
+│   ├── routes/                # API route handlers
+│   ├── auth/                  # Authentication middleware
+│   ├── database/              # Database connection and setup
+│   └── requirements.txt
+├── docker-compose.yml
+└── README.md
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**Structure Decision**: Following the exact monorepo structure specified in the constitution with separate frontend and backend services.
 
 ## Complexity Tracking
 

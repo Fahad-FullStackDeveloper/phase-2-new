@@ -20,37 +20,45 @@ description: "Task list template for feature implementation"
 
 ## Path Conventions
 
-- **Single project**: `src/`, `tests/` at repository root
 - **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
+- **Monorepo structure**: Follow exact folder layout from constitution
+- Paths shown below assume web app structure - adjust based on plan.md structure
 
-<!-- 
+<!--
   ============================================================================
   IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
-  
+
   The /sp.tasks command MUST replace these with actual tasks based on:
   - User stories from spec.md (with their priorities P1, P2, P3...)
   - Feature requirements from plan.md
   - Entities from data-model.md
   - Endpoints from contracts/
-  
+
   Tasks MUST be organized by user story so each story can be:
   - Implemented independently
   - Tested independently
   - Delivered as an MVP increment
-  
+
   DO NOT keep these sample tasks in the generated tasks.md file.
   ============================================================================
+
+  CONSTITUTION COMPLIANCE CHECKLIST:
+  - [ ] All changes originate from spec files
+  - [ ] Follow exact monorepo structure (frontend/, backend/, specs/, etc.)
+  - [ ] Enforce user isolation (each user sees only their own tasks)
+  - [ ] Implement stateless JWT auth with Better Auth and FastAPI verification
+  - [ ] Use Server Components by default, minimize client-side JS
+  - [ ] Implement proper error handling with user-friendly messages
+  - [ ] Enforce type safety with TypeScript and Pydantic/SQLModel
 -->
 
 ## Phase 1: Setup (Shared Infrastructure)
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+- [ ] T001 Create project structure per implementation plan with exact monorepo layout
+- [ ] T002 Initialize frontend (Next.js 16+, TypeScript, Tailwind) and backend (Python, FastAPI, SQLModel) projects
+- [ ] T003 [P] Configure linting and formatting tools for both frontend and backend
 
 ---
 
@@ -62,12 +70,12 @@ description: "Task list template for feature implementation"
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T004 Setup database schema and Neon PostgreSQL connection with SQLModel
+- [ ] T005 [P] Implement Better Auth with JWT plugin for frontend authentication
+- [ ] T006 [P] Setup JWT verification middleware in FastAPI backend
+- [ ] T007 Create base models (User, Task) with proper user_id foreign key relationships
+- [ ] T008 Configure error handling and logging infrastructure for both services
+- [ ] T009 Setup environment configuration management with proper secrets handling
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -88,12 +96,18 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create [Entity1] model in src/models/[entity1].py
-- [ ] T013 [P] [US1] Create [Entity2] model in src/models/[entity2].py
-- [ ] T014 [US1] Implement [Service] in src/services/[service].py (depends on T012, T013)
-- [ ] T015 [US1] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T016 [US1] Add validation and error handling
-- [ ] T017 [US1] Add logging for user story 1 operations
+- [ ] T012 [P] [US1] Create User model in backend/models/user.py (managed by Better Auth)
+- [ ] T013 [P] [US1] Create Task model in backend/models/task.py with user_id foreign key
+- [ ] T014 [US1] Implement Task service in backend/services/task_service.py (enforces user_id filtering)
+- [ ] T015 [US1] Implement GET /api/{user_id}/tasks endpoint in backend/routes/tasks.py (with JWT verification and user_id matching)
+- [ ] T016 [US1] Create Server Component for displaying tasks in frontend/app/(app)/tasks/page.tsx
+- [ ] T017 [US1] Add proper error handling and loading states
+
+**Constitution Compliance Check**:
+- [ ] User isolation enforced (backend filters by user_id)
+- [ ] JWT verification implemented
+- [ ] Server Components used by default
+- [ ] Type safety enforced with TypeScript/Pydantic
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -112,10 +126,16 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Implementation for User Story 2
 
-- [ ] T020 [P] [US2] Create [Entity] model in src/models/[entity].py
-- [ ] T021 [US2] Implement [Service] in src/services/[service].py
-- [ ] T022 [US2] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T023 [US2] Integrate with User Story 1 components (if needed)
+- [ ] T020 [P] [US2] Implement POST /api/{user_id}/tasks endpoint in backend/routes/tasks.py (with JWT verification and user_id matching)
+- [ ] T021 [US2] Create Server Action for creating tasks in frontend/app/actions/task_actions.ts
+- [ ] T022 [US2] Implement task creation form in frontend/app/(app)/tasks/create/page.tsx (using Server Components by default)
+- [ ] T023 [US2] Add client component for interactive form elements if needed (with 'use client')
+
+**Constitution Compliance Check**:
+- [ ] User isolation enforced (backend assigns correct user_id)
+- [ ] JWT verification implemented
+- [ ] Server Components used by default, Client Components only when necessary
+- [ ] Type safety enforced with TypeScript/Pydantic
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -134,9 +154,16 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Implementation for User Story 3
 
-- [ ] T026 [P] [US3] Create [Entity] model in src/models/[entity].py
-- [ ] T027 [US3] Implement [Service] in src/services/[service].py
-- [ ] T028 [US3] Implement [endpoint/feature] in src/[location]/[file].py
+- [ ] T026 [P] [US3] Implement PUT /api/{user_id}/tasks/{id} endpoint in backend/routes/tasks.py (with JWT verification and user_id matching)
+- [ ] T027 [US3] Implement DELETE /api/{user_id}/tasks/{id} endpoint in backend/routes/tasks.py (with JWT verification and user_id matching)
+- [ ] T028 [US3] Implement PATCH /api/{user_id}/tasks/{id}/complete endpoint in backend/routes/tasks.py (with JWT verification and user_id matching)
+- [ ] T029 [US3] Create UI components for task update/delete/complete in frontend/components/task/
+
+**Constitution Compliance Check**:
+- [ ] User isolation enforced (backend verifies user_id matches token)
+- [ ] JWT verification implemented
+- [ ] Server Components used by default
+- [ ] Type safety enforced with TypeScript/Pydantic
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -154,8 +181,9 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX Code cleanup and refactoring
 - [ ] TXXX Performance optimization across all stories
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
-- [ ] TXXX Security hardening
+- [ ] TXXX Security hardening (ensure all endpoints verify JWT and user_id)
 - [ ] TXXX Run quickstart.md validation
+- [ ] TXXX Verify all constitution principles are followed
 
 ---
 
@@ -203,8 +231,8 @@ Task: "Contract test for [endpoint] in tests/contract/test_[name].py"
 Task: "Integration test for [user journey] in tests/integration/test_[name].py"
 
 # Launch all models for User Story 1 together:
-Task: "Create [Entity1] model in src/models/[entity1].py"
-Task: "Create [Entity2] model in src/models/[entity2].py"
+Task: "Create User model in backend/models/user.py"
+Task: "Create Task model in backend/models/task.py"
 ```
 
 ---
@@ -240,6 +268,21 @@ With multiple developers:
 
 ---
 
+## Constitution Compliance Verification
+
+Throughout implementation, verify:
+
+- [ ] All changes originate from spec files (spec-driven development)
+- [ ] Follow exact monorepo structure (frontend/, backend/, specs/, etc.)
+- [ ] Enforce user isolation (each user sees only their own tasks)
+- [ ] Implement stateless JWT auth with Better Auth and FastAPI verification
+- [ ] Use Server Components by default, minimize client-side JS
+- [ ] Implement proper error handling with user-friendly messages
+- [ ] Enforce type safety with TypeScript and Pydantic/SQLModel
+- [ ] All API endpoints verify JWT and match user_id from token with URL parameter
+
+---
+
 ## Notes
 
 - [P] tasks = different files, no dependencies
@@ -249,3 +292,4 @@ With multiple developers:
 - Commit after each task or logical group
 - Stop at any checkpoint to validate story independently
 - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
+- Always ensure constitution compliance at each checkpoint
