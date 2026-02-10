@@ -30,6 +30,18 @@ This project utilizes specialized AI agents to handle different development aspe
 - **Project Coordinator**: Organizes the monorepo structure and manages infrastructure files
 - **Spec Writer Documentation Agent**: Creates and maintains specification documents
 
+## Development Skills
+
+To ensure consistent, high-quality development across all agents, we've implemented specialized skills that enforce best practices:
+
+- **Next.js Core Conventions**: Enforces App Router best practices, Server Components default, routing, metadata, and clean hackathon-friendly code style
+- **Next.js Data Fetching & Mutations**: Best patterns for data loading, caching, revalidation, Server Actions, and route handlers
+- **Next.js UI Components & Styling**: Patterns for reusable components, shadcn/ui, Tailwind, client components, and responsiveness
+- **Next.js Auth & Security**: Patterns for authentication, middleware, protected routes, and secure practices
+- **Hackathon Phase 2 Success Rules**: Overall guidelines, success criteria, and anti-patterns for Phase 2 judging
+
+These skills ensure consistent code quality and adherence to Next.js best practices across all development tasks.
+
 ## Technologies Used
 
 - **Backend**: FastAPI with JWT authentication

@@ -1,5 +1,15 @@
 # Versions
 
+## v0.4.0 - February 10, 2026
+- Added specialized development skills for consistent code quality:
+  - Next.js Core Conventions skill for App Router best practices
+  - Next.js Data Fetching & Mutations skill for data handling
+  - Next.js UI Components & Styling skill for UI consistency
+  - Next.js Auth & Security skill for authentication patterns
+  - Hackathon Phase 2 Success Rules skill for overall guidelines
+- Consolidated redundant skills for streamlined development
+- Enhanced development workflow with standardized practices
+
 ## v0.3.0 - February 9, 2026
 - Added integration-tester agent for verifying frontend and backend components
 - Added project-coordinator agent for managing monorepo structure and infrastructure files
