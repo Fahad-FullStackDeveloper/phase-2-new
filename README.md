@@ -78,6 +78,46 @@ Current Phase: II - Full-Stack Web Application with persistent storage
 - JWT-based authentication with Better Auth integration
 - Server-first architecture with Next.js App Router
 
+## Application Name: TaskMaster Pro (Working Title)
+
+TaskMaster Pro (working title) is a modern, full-stack todo application that enables users to manage their tasks efficiently with enterprise-grade security and privacy. Built with Next.js 16+ and FastAPI, it provides a seamless user experience with strict data isolation between users.
+
+Note: The application is currently in development and the final name may change based on domain availability and branding decisions.
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18+
+- Python 3.11+
+- PostgreSQL (or Neon PostgreSQL for cloud deployment)
+- Docker (optional, for containerized deployment)
+
+### Environment Setup
+1. Copy `.env.example` to `.env` and update with your configuration
+2. Install backend dependencies: `cd backend && pip install -r requirements.txt`
+3. Install frontend dependencies: `cd frontend && npm install`
+4. Start the development servers (see Development section below)
+
+### Development
+The project uses a monorepo structure with separate frontend and backend services:
+- Backend: FastAPI server running on port 8000
+- Frontend: Next.js app running on port 3000
+- Database: PostgreSQL (local or Neon)
+
+### Running with Docker
+The project includes a `docker-compose.yml` file for easy containerized development:
+```bash
+docker-compose up
+```
+
+### Key Features
+- User authentication with JWT tokens
+- Complete task CRUD operations
+- Real-time task updates
+- Responsive design for all device sizes
+- Strict user data isolation
+- Type-safe development with TypeScript and Pydantic
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
