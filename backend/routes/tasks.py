@@ -1,10 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from typing import List
+from fastapi import APIRouter, Depends, HTTPException, status, Query
+from typing import List, Optional
 from sqlmodel import Session
-from .database.database import get_session
-from .auth.jwt import get_current_user
-from .models.task import Task, TaskCreate, TaskUpdate
-from .services.task_service import (
+from database.database import get_session
+from auth.jwt import get_current_user
+from models.task import Task, TaskCreate, TaskUpdate
+from services.task_service import (
     get_tasks_by_user_id,
     create_task_for_user,
     get_task_by_id_and_user_id,
@@ -20,10 +20,13 @@ router = APIRouter()
 def get_tasks(
     user_id: str,
     current_user_id: str = Depends(get_current_user),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
+    skip: int = Query(0, ge=0, description="Number of records to skip"),
+    limit: int = Query(100, ge=1, le=100, description="Maximum number of records to return"),
+    completed: Optional[bool] = Query(None, description="Filter by completion status")
 ):
     """
-    Get all tasks for the current user
+    Get tasks for the current user with pagination and optional filtering
     """
     # Verify that the requested user_id matches the authenticated user_id
     if user_id != current_user_id:
@@ -31,8 +34,8 @@ def get_tasks(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Not authorized to access these tasks"
         )
-    
-    tasks = get_tasks_by_user_id(session, user_id)
+
+    tasks = get_tasks_by_user_id(session, user_id, skip=skip, limit=limit, completed=completed)
     return tasks
 
 

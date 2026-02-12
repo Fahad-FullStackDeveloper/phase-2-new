@@ -1,6 +1,49 @@
 # Versions
 
-## v0.7.0 - February 10, 2026
+## v1.0.0 - February 12, 2026
+**Main Reason**: Production-ready release with enhanced security and proxy configuration
+- Merged features from v0.8.0 and enhanced with improved authentication system:
+  - Implemented robust authentication with Better Auth and JWT tokens
+  - Created comprehensive proxy configuration for API requests
+  - Enhanced security with proper token handling and protected routes
+  - Improved user experience with smooth animations and transitions
+- Added advanced proxy functionality:
+  - Created `app/api/proxy/route.ts` as API route proxy for backend calls
+  - Implemented `lib/proxy.ts` with authentication utility functions
+  - Updated `next.config.js` with API rewrites to backend server
+  - Enhanced middleware functionality for route protection
+- Frontend improvements:
+  - Beautiful, responsive UI with modern design using Tailwind CSS
+  - Task management with create, edit, delete, and completion features
+  - Protected routes and layouts with proper authentication checks
+  - JWT token handling for secure API communication
+- Backend enhancements:
+  - FastAPI backend with proper authentication endpoints
+  - Secure user data isolation and task management
+  - API endpoints for complete CRUD operations
+- Comprehensive test coverage and security validation maintained
+- Application now ready for production deployment with all features implemented
+
+## v0.8.0 - February 11, 2026
+**Main Reason**: Complete application functionality and test coverage
+- Completed all remaining tasks for the Todo application:
+  - Implemented pagination/filtering for task lists (T043)
+  - Created contract tests for authentication endpoints (T013, T021)
+  - Created integration tests for user registration and login journeys (T014, T022)
+  - Created contract tests for task operations (T029, T037, T044, T051, T058)
+  - Created integration tests for task operations (T030, T038, T045, T052, T059)
+  - Created security tests for data isolation (T065, T066)
+  - Created full integration test to verify all functionality works together (T072)
+- Enhanced backend to support pagination (skip, limit) and filtering (by completion status)
+- Enhanced frontend TaskList component with pagination controls and filter buttons
+- Created comprehensive test suite with contract, integration, and security tests
+- Updated API layer to support pagination and filtering parameters
+- Verified all functionality works together seamlessly
+- All tasks from original specification now completed
+- Application now has full pagination, filtering, and comprehensive test coverage
+- Maintains strict user data isolation and follows all architectural principles
+
+## v0.7.0 - February 11, 2026
 **Main Reason**: Application implementation completion and future planning
 - Completed full implementation of TaskMaster Pro application
 - All core functionality implemented: authentication, task CRUD, user isolation

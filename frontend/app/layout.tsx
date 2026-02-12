@@ -1,13 +1,9 @@
-// app/layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Todo App',
-  description: 'A secure, multi-user todo application',
+  title: 'Modern Todo App',
+  description: 'A beautiful and functional todo application',
 };
 
 export default function RootLayout({
@@ -17,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 antialiased">
+        {children}
+      </body>
     </html>
   );
 }

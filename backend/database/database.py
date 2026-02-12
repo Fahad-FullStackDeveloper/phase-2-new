@@ -1,8 +1,8 @@
 from sqlmodel import create_engine, Session
 from sqlalchemy import MetaData
-from ..models.user import User
-from ..models.task import Task
-from ..config import DATABASE_URL
+from models.user import User
+from models.task import Task
+from config import DATABASE_URL
 
 
 # Create database engine

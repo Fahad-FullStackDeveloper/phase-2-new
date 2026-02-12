@@ -2,8 +2,8 @@ from fastapi import HTTPException, Depends, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from jose import JWTError, jwt
 from typing import Optional
-from ..config import BETTER_AUTH_SECRET
-from ..models.user import User
+from config import BETTER_AUTH_SECRET
+from models.user import User
 
 
 security = HTTPBearer()

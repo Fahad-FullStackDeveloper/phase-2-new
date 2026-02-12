@@ -1,13 +1,27 @@
 from sqlmodel import Session, select
 from fastapi import HTTPException, status
-from typing import List
-from ..models.task import Task, TaskCreate, TaskUpdate
-from ..models.user import User
+from typing import List, Optional
+from models.task import Task, TaskCreate, TaskUpdate
+from models.user import User
 
 
-def get_tasks_by_user_id(session: Session, user_id: str) -> List[Task]:
-    """Get all tasks for a specific user"""
+def get_tasks_by_user_id(
+    session: Session, 
+    user_id: str, 
+    skip: int = 0, 
+    limit: int = 100, 
+    completed: Optional[bool] = None
+) -> List[Task]:
+    """Get tasks for a specific user with pagination and optional filtering"""
     statement = select(Task).where(Task.user_id == user_id)
+    
+    # Apply completion status filter if specified
+    if completed is not None:
+        statement = statement.where(Task.completed == completed)
+    
+    # Apply pagination
+    statement = statement.offset(skip).limit(limit)
+    
     return session.exec(statement).all()
 
 

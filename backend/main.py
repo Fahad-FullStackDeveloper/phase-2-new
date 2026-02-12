@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .database.database import create_tables
-from .routes import tasks, auth
+from database.database import create_tables
+from routes import tasks, auth
 
 
 # Create FastAPI app instance

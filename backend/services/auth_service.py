@@ -1,7 +1,7 @@
 from sqlmodel import Session, select
 from fastapi import HTTPException, status
 from typing import Optional
-from ..models.user import User
+from models.user import User
 from passlib.context import CryptContext
 
 

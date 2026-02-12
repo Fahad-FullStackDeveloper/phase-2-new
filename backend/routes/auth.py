@@ -1,22 +1,22 @@
-from fastapi import APIRouter, HTTPException, status, Depends
+from fastapi import APIRouter, HTTPException, status, Depends, Form
 from sqlmodel import Session
 from typing import Optional
 from jose import jwt
 from datetime import datetime, timedelta
-from ..database.database import get_session
-from ..config import BETTER_AUTH_SECRET
-from ..models.user import User
-from ..services.auth_service import authenticate_user, get_user_by_email, create_user
-from ..models.task import Task
+from database.database import get_session
+from config import BETTER_AUTH_SECRET
+from models.user import User
+from services.auth_service import authenticate_user, get_user_by_email, create_user
+from models.task import Task
 
 router = APIRouter()
 
 
 @router.post("/register")
-def register_user(
-    email: str,
-    password: str,
-    name: Optional[str] = None,
+async def register_user(
+    email: str = Form(...),
+    password: str = Form(...),
+    name: str = Form(None),
     session: Session = Depends(get_session)
 ):
     """
@@ -29,23 +29,23 @@ def register_user(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="A user with this email already exists"
         )
-    
+
     # Create new user
     user = create_user(session, email, password, name)
-    
+
     # Create JWT token for the new user
     access_token_expires = timedelta(minutes=30)
     access_token = create_access_token(
         data={"sub": user.email, "userId": user.id}, expires_delta=access_token_expires
     )
-    
+
     return {"access_token": access_token, "token_type": "bearer", "user_id": user.id}
 
 
 @router.post("/login")
-def login_user(
-    email: str,
-    password: str,
+async def login_user(
+    email: str = Form(...),
+    password: str = Form(...),
     session: Session = Depends(get_session)
 ):
     """
@@ -58,13 +58,13 @@ def login_user(
             detail="Incorrect email or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
+
     # Create JWT token
     access_token_expires = timedelta(minutes=30)
     access_token = create_access_token(
         data={"sub": user.email, "userId": user.id}, expires_delta=access_token_expires
     )
-    
+
     return {"access_token": access_token, "token_type": "bearer", "user_id": user.id}
 
 
